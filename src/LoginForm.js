@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import './App.css';
+import { Link } from 'react-router-dom';
+import './Login.css';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -7,12 +8,15 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Username:', username);
-    console.log('Password:', password);
+    /* console.log('Username:', username);
+    console.log('Password:', password); */
+  };
+  const handleLogin = () => {
+    window.location.href = '/dashboard';
   };
 
   return (
-    <div>
+    <div className="login-container">
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <label>
@@ -23,7 +27,6 @@ const Login = () => {
             onChange={(e) => setUsername(e.target.value)}
           />
         </label>
-        <br /><br />
         <label>
           Password:
           <input
@@ -32,9 +35,9 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
-        <br /><br />
-        <button type="submit">Login</button>
-      </form>
+        <button onClick={handleLogin}>Login</button>
+      </form><br />
+      <p>Don't have an account? <Link to="/registration">Register here</Link></p>
     </div>
   );
 };
